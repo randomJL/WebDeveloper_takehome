@@ -1,9 +1,9 @@
 <?php
 
 class Database {
-    private $db;
-    private $host;
-    private $port;
+    private $dbname;
+    private $dbhost;
+    private $dbport;
     private $user;
     private $password;
     private $dsn;
@@ -48,7 +48,7 @@ class Database {
     }
 
     protected function assignDSN(){
-        $dsn = "mysql:". "host=". $this->host. ";"."dbname=". $this->db;
+        $dsn = "mysql:". "host=". $this->dbhost. ";"."dbname=". $this->dbname;
         $this->dsn = $dsn;
     }
 
@@ -58,7 +58,6 @@ class Database {
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
         ];
     }
-
 }
 ?>
 

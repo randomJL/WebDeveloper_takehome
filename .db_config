@@ -1,5 +1,5 @@
-db = test_sph
-host = 107.0.0.1
-port = 3306
+dbname = test_sph
+dbhost = 107.0.0.1
+dbport = 3306
 user = jun
 password = jun123

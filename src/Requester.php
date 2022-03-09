@@ -47,7 +47,7 @@ class Requester {
     }
 
 
-    public function insertEntry($fname,$lname,$email) {
+    public function insertRequester($fname,$lname,$email) {
 
         try {
             $query = "INSERT INTO requester (FirstName, LastName, Email) VALUES (?,?,?)";
@@ -61,13 +61,13 @@ class Requester {
 
 
     // for testing purpost, retrieve all data from database
-    public function getAllEntries(){
+    public function getwholeRequester(){
         $query = "SELECT * FROM requester";
         $stmt = $this->connection->prepare($query);
         $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $stmt;
     }
-
 }
 
 ?>
