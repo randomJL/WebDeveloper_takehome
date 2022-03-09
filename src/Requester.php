@@ -21,14 +21,10 @@ class Requester extends Database{
     }
 
     public function insertRequester($firstname, $lastname, $email){
-        if(($this->checkExistence($email))){
-            throw new RuntimeException($email."already exists");
-        }
         $query = "INSERT INTO REQUESTER (FirstName, LastName, Email) VALUES (?, ?, ?)";
         $statement = $this->connection->prepare($query);
         $statement->execute([$firstname, $lastname, $email]);
     }
-
 
 }
 

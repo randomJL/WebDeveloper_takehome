@@ -14,11 +14,19 @@ class Database {
 
     public function __construct($configName, $configPath){
 
-        if($configName == "sqlite3"){
-            $this->assignDSN($configName, $configPath);
-        } else {
+        if($configName == "sqlite"){
+            $this->assignDSN($configName);
+        } else if ($configName == "mysql"){
             $this->parseConfig($configName, $configPath);
-            $this->assignDSN();
+            $this->assignDSN($configName);
+        }
+
+        $this->assignPDOOptions();
+        if(file_exists($configPath)){
+            $this->dbopen();
+        }
+        else{
+            throw new RuntimeException($configPath . " not found");
         }
 
     }
@@ -53,8 +61,14 @@ class Database {
         $this->connection = null;
     }
 
-    protected function assignDSN(){
-        $dsn = "mysql:". "host=". $this->dbhost. ";"."dbname=". $this->dbname;
+    protected function assignDSN($configName,$dbFilePath){
+        if ($configName== "mysql") {
+            $dsn = $configName.": host=". $this->dbhost. ";"."dbname=". $this->dbname;
+        }
+        else if ($configName == "sqlite") {
+            $dsn = $configName.":";
+        }
+        
         $this->dsn = $dsn;
     }
 

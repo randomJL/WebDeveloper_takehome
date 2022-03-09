@@ -2,15 +2,7 @@
 
 require("src/Controller.php");
 
-new Controller($configName,'.db_config');
-
-$requestMethod = $_SERVER['REQUEST_METHOD'];
-if ($requestMethod == "POST"){
-    $Controller -> insertData();
-    $Controller->getDB()->db_close();
-} else {
-    echo "No value entered!";
-}
+new Controller('sqlite3','./sph_database.db');
 
 ?>
 

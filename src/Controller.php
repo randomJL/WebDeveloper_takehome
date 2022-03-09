@@ -29,10 +29,14 @@ class Controller {
         $lname = filter_var($_POST['lastname'], FILTER_SANITIZE_STRING);
         $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
 
-        $this->$requester->insertRequester($fname,$lname,$email);
+        
+        try{
+            $this->requester->insertRequester($fname,$lname,$email);
+        }
+        catch (RuntimeException $e){
+            echo $e->getMessage();
+        }  
     }
-
-
 
 };
 
