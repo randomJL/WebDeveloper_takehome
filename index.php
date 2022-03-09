@@ -2,7 +2,7 @@
 
 require("src/Controller.php");
 
-new Controller('sqlite3','./sph_database.db');
+new Controller('sqlite','./sph_database.db');
 
 ?>
 
@@ -30,6 +30,30 @@ new Controller('sqlite3','./sph_database.db');
                         <input type="email" name="email" value="<?php echo $entered_email;?>" class="request_input"/><br><br>
                         <input type="submit" value="Submit" class="request_submit"/>
             </form>  
+        </div>
+
+        <div>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+                <table>
+                </tr></thead>
+                    <tbody>
+
+                    <?php
+
+                    foreach ($entries as $k => $v){
+                        $html = "<tr>";
+                        $html .= "<th>" . $v['FirstName'] . "</th>";
+                        $html .= "<th>" . $v['LastName'] . "</th>";
+                        $html .= "<th>" . $v['Email'] . "</th>";
+                        $html .= "</tr>";
+                    }
+
+                    ?>
+                    
+                    </tbody>
+                </table>
         </div>
 
     </body>

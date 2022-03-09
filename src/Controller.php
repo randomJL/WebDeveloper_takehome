@@ -6,11 +6,15 @@ require("Database.php");
 class Controller {
 
     private $requester;
+    private $entries;
 
     public function _construct($configName, $configPath) {
         $this->requester= new Requester($configName, $configPath);
 
         $requestMethod = $_SERVER['REQUEST_METHOD'];
+        if($requestMethod == "GET") {
+            $this->$entries = $this->getEntries();
+        }
         if ($requestMethod == "POST"){
             $this->insertData();
         }
@@ -37,6 +41,13 @@ class Controller {
             echo $e->getMessage();
         }  
     }
+
+    protected function getEntries(){
+        $this-> entries = $this->requester->getWholeRequester();
+        
+        return $this -> entries;
+    }
+
 
 };
 
