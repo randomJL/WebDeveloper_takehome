@@ -5,10 +5,15 @@ require("Database.php");
 
 class Controller {
 
-    private $database;
+    private $requester;
 
     public function _construct($configName, $configPath) {
-        $this->database = new Database($configName, $configPath);
+        $this->requester= new Requester($configName, $configPath);
+
+        $requestMethod = $_SERVER['REQUEST_METHOD'];
+        if ($requestMethod == "POST"){
+            $this->insertData();
+        }
     }
 
     public function insertData() {
@@ -24,35 +29,11 @@ class Controller {
         $lname = filter_var($_POST['lastname'], FILTER_SANITIZE_STRING);
         $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
 
-        if(!$this->checkErrors()){
-            try{
-                $this->requester->insertData($fname, $lname, $email);
-            }
-            catch (RuntimeException $e){
-                $this->errors['email'] = $e->getMessage();
-            }
-
-        }
-
-        $this->insertRequester($fname,$lname,$email);
-      
+        $this->$requester->insertRequester($fname,$lname,$email);
     }
 
-    public function insertRequester($fname,$lname,$email) {
-        try {
-            $query = "INSERT INTO requester (FirstName, LastName, Email) VALUES (:first_name,:last_name,:email)";
-            $stmt = $dbopen -> prepare($query);
-    
-            $stmt -> execute([$fname,$lname,$email]);
-        }catch(PDOException $e){
-            echo "ERROR:".$e->getMessage();
-        }
-    
-    }
 
-    public function getDB() {
-        return $this->database;
-    }
+
 };
 
 ?>

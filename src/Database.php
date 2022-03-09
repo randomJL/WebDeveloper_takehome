@@ -8,12 +8,19 @@ class Database {
     private $password;
     private $dsn;
     private $pdoOptions;
+    private $configName;
     protected $connection;
 
+
     public function __construct($configName, $configPath){
-        $this->parseConfig($configName, $configPath);
-        $this->assignDSN();
-        $this->assignPDOOptions();
+
+        if($configName == "sqlite3"){
+            $this->assignDSN($configName, $configPath);
+        } else {
+            $this->parseConfig($configName, $configPath);
+            $this->assignDSN();
+        }
+
     }
 
     protected function parseConfig($configName, $configPath){
