@@ -24,13 +24,23 @@ class Controller {
         $lname = filter_var($_POST['lastname'], FILTER_SANITIZE_STRING);
         $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
 
+        if(!$this->checkErrors()){
+            try{
+                $this->requester->insertData($fname, $lname, $email);
+            }
+            catch (RuntimeException $e){
+                $this->errors['email'] = $e->getMessage();
+            }
+
+        }
+
         $this->insertRequester($fname,$lname,$email);
       
     }
 
     public function insertRequester($fname,$lname,$email) {
         try {
-            $query = "INSERT INTO requester (FirstName, LastName, Email) VALUES (?,?,?)";
+            $query = "INSERT INTO requester (FirstName, LastName, Email) VALUES (:first_name,:last_name,:email)";
             $stmt = $dbopen -> prepare($query);
     
             $stmt -> execute([$fname,$lname,$email]);
