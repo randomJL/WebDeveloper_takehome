@@ -1,5 +1,18 @@
-<?php require("src/Controller.php") ?>
+<?php
 
+require("src/Controller.php");
+
+new Controller($configName,'.db_config');
+
+$requestMethod = $_SERVER['REQUEST_METHOD'];
+if ($requestMethod == "POST"){
+    $Controller -> insertData();
+    $Controller->getDB()->db_close();
+} else {
+    echo "No value entered!";
+}
+
+?>
 
 <!DOCTYPE html>
 <html>
@@ -15,7 +28,7 @@
 
             
         <div>
-            <form action="requester.php" method="post">
+            <form action="index.php" method="post">
                         <label>FirstName:</label>
                         <input type="text" name="first_name" value="<?php echo $entered_fname;?>" class="request_input"/><br><br>
                         

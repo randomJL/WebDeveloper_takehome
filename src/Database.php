@@ -10,13 +10,13 @@ class Database {
     private $pdoOptions;
     protected $connection;
 
-    public function __construct(string $configName, string $configPath){
+    public function __construct($configName, $configPath){
         $this->parseConfig($configName, $configPath);
         $this->assignDSN();
         $this->assignPDOOptions();
     }
 
-    protected function parseConfig(string $configName, string $configPath){
+    protected function parseConfig($configName, $configPath){
         $path = __DIR__ . "/../../" . $configPath;
         if(file_exists($path))
         {
@@ -26,7 +26,6 @@ class Database {
             {
                 $this->$k = $v;
             }
-
         }
         else
         {
