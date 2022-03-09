@@ -1,5 +1,5 @@
 db = test_sph
 host = 107.0.0.1
 port = 3306
-user = gatechUser
-password = gatech123
+user = jun
+password = jun123

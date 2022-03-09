@@ -1,9 +1,9 @@
 <?php
 
 class Requester {
-    private string $configName;
-    private string $configPath;
-    private array $entry_list;
+    private $configName;
+    private $configPath;
+    private $entry_list;
 
     public function _construct($configName,$configPath) {
         $this->configName = $configName;

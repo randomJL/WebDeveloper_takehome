@@ -1,14 +1,14 @@
 <?php
 
 class Database {
-    private string $db;
-    private string $host;
-    private string $port;
-    private string $user;
-    private string $password;
-    private string $dsn;
-    private array $pdoOptions;
-    protected PDO $connection;
+    private $db;
+    private $host;
+    private $port;
+    private $user;
+    private $password;
+    private $dsn;
+    private $pdoOptions;
+    protected $connection;
 
     public function __construct(string $configName, string $configPath){
         $this->parseConfig($configName, $configPath);
@@ -26,13 +26,13 @@ class Database {
             {
                 $this->$k = $v;
             }
+
         }
         else
         {
             throw new RuntimeException($path . " cannot be found");
         }
     }
-
 
     protected function db_open() {
         try {
@@ -48,7 +48,7 @@ class Database {
     }
 
     protected function assignDSN(){
-        $dsn = "mysql:". "host=". $this->host. ";". $this->db;
+        $dsn = "mysql:". "host=". $this->host. ";"."dbname=". $this->db;
         $this->dsn = $dsn;
     }
 

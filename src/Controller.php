@@ -3,10 +3,10 @@
 
 class Controller {
 
-    protected PDO $dbopen;
-    private Requester $requester;
-    private Database $database;
-    private Html $html;
+    protected $dbopen;
+    private $requester;
+    private $database;
+    private $html;
 
     public function _construct(string $configName, $configPath) {
         $database= new Database($configName, $configPath);
