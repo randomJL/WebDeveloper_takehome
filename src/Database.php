@@ -8,22 +8,21 @@ class Database {
     private $password;
     private $dsn;
     private $pdoOptions;
-    private $configName;
     protected $connection;
 
 
     public function __construct($configName, $configPath){
 
         if($configName == "sqlite"){
-            $this->assignDSN($configName);
+            $this->assignDSN($configName,$configPath);
         } else if ($configName == "mysql"){
             $this->parseConfig($configName, $configPath);
-            $this->assignDSN($configName);
+            $this->assignDSN($configName,$configPath);
         }
 
         $this->assignPDOOptions();
         if(file_exists($configPath)){
-            $this->dbopen();
+            $this->db_open();
         }
         else{
             throw new RuntimeException($configPath . " not found");
@@ -66,7 +65,7 @@ class Database {
             $dsn = $configName.": host=". $this->dbhost. ";"."dbname=". $this->dbname;
         }
         else if ($configName == "sqlite") {
-            $dsn = $configName.":";
+            $dsn = $configName.":".$dbFilePath;
         }
         
         $this->dsn = $dsn;

@@ -27,8 +27,20 @@ class Html{
     }
 
     public function getForm($errors = []): string
-    {
+    {   
+        $html = '<div>
+                <form action="index.php" method="post">;
+                            <label>FirstName:</label>
+                            <input type="text" name="first_name" class="request_input"/><br><br>
+                            <label>LastName:</label>
+                            <input type="text" name="last_name" class="request_input"/><br><br>
+                            <label>Email:</label>
+                            <input type="email" name="email" class="request_input"/><br><br>
+                            <input type="submit" value="Submit" class="request_submit"/>
+                </form>  
+                </div>';
 
+                return $html;
     }
 
 }

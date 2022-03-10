@@ -1,6 +1,0 @@
-[sph_takehome_oop]
-dbname = test_sph
-dbhost = 107.0.0.1
-dbport = 3306
-user = jun
-password = jun123

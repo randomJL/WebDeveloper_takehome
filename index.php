@@ -12,13 +12,15 @@
     <div ><img src="src/img/sph_title.png"/></div>
 
     <div>
+
         <?php
 
-            require("src/Controller.php");
+        require("src/Controller.php");
 
-            $controler = new Controller('sqlite','./db/sph_database.db');
+        new Controller('sqlite','./sph_database.db');
 
         ?>
+
     </div>
 
     </body>
