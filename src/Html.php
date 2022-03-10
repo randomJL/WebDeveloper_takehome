@@ -26,10 +26,10 @@ class Html{
         return $html;
     }
 
-    public function getForm($errors = []): string
+    public function getForm(): string
     {   
         $html = '<div>
-                <form action="index.php" method="post">;
+                <form action="index.php" method="post">
                             <label>FirstName:</label>
                             <input type="text" name="first_name" class="request_input"/><br><br>
                             <label>LastName:</label>

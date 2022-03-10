@@ -26,7 +26,7 @@ class Controller {
     public function index(){
         $entries = $this->getEntries();
 
-        $html = $this->html->getForm($this->errors);
+        $html = $this->html->getForm();
         $html .= $this->html->getListOfEntries($entries);
 
         echo $html;
