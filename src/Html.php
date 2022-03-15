@@ -12,12 +12,15 @@ class Html{
         $html .= "<th>Email</th>";
         $html .= "</tr></thead>";
         $html .= "<tbody>";
-
         foreach ($data as $k => $v){
             $html .= "<tr>";
             $html .= "<th>" . $v['FirstName'] . "</th>";
             $html .= "<th>" . $v['LastName'] . "</th>";
             $html .= "<th>" . $v['Email'] . "</th>";
+            $html .= "<th>";
+            $html .= "<a href='index.php?delete_key=". 
+            $v['Email'] . "'>delete</a>";
+            $html .= "</th>";
             $html .= "</tr>";
         }
         $html .= "</tbody>";

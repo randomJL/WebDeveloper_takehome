@@ -26,5 +26,11 @@ class Requester extends Database{
         $statement->execute([$firstname, $lastname, $email]);
     }
 
+    public function deleteRequester($email) {
+        $query = "DELETE FROM REQUESTER WHERE EMAIL = ?";
+        $statement = $this->connection->prepare($query);
+        $statement->execute([$email]);
+    }
+
 }
 
