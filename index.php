@@ -190,7 +190,7 @@
                             
                                     require("src/Controller.php");
                             
-                                    new Controller('sqlite','./sph_database.db');
+                                    new Controller('sqlite','./src/db/sph_database.db');
                             
                                     ?>
                             </div>
